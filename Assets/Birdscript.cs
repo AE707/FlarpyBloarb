@@ -3,6 +3,8 @@ using UnityEngine;
 public class Birdscript : MonoBehaviour
 {
     public Rigidbody2D myRegidbody;
+     public float flapStrength;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
