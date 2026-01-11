@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PipeMiddeleScript : MonoBehaviour
+public class PipeMiddleScript : MonoBehaviour
 {
 
     public LogicScript logic; 

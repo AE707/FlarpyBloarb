@@ -48,7 +48,11 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.3.2f1\Editor\Data\Tools\BuildPipeline\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\PipeMoveScript.cs" />
+    <Compile Include="Assets\PipeMiddleScript.cs" />
+    <Compile Include="Assets\LogicScript.cs" />
     <Compile Include="Assets\Birdscript.cs" />
+    <Compile Include="Assets\PipeSpawnerScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

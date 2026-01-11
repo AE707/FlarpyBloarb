@@ -16,6 +16,7 @@ public class LogicScript : MonoBehaviour
             PlayerScore += scoreToAdd;
             scoreText.text = PlayerScore.ToString();
     }
+    }
     public void RestartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
