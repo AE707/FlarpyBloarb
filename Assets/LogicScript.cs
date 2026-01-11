@@ -19,6 +19,12 @@ public class LogicScript : MonoBehaviour
     }
     public void RestartGame()
     {
+        
+                // Reset GameManager state before reloading scene
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.StartGame();
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
