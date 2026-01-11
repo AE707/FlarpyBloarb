@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
     {
         // Initialize game in Menu state
         ShowMenu();
+            }
         // Update is called once per frame
     private void Update()
     {
@@ -102,6 +103,20 @@ public class GameManager : MonoBehaviour
             HideMenu();
         CurrentState = GameState.Playing;
         Time.timeScale = 1f; // Ensure time is running
+    }
+
+        // Show the menu
+    public void ShowMenu()
+    {
+        CurrentState = GameState.Menu;
+        Time.timeScale = 0f;  // Freeze game time
+        if (menuPanel != null) menuPanel.SetActive(true);
+    }
+
+    // Hide the menu
+    public void HideMenu()
+    {
+        if (menuPanel != null) menuPanel.SetActive(false);
     }
 
     // End the game
