@@ -1,5 +1,3 @@
-using System.Linq;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PipeMiddeleScript : MonoBehaviour
@@ -9,18 +7,15 @@ public class PipeMiddeleScript : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<LogicScript>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+        GameObject logicObject = GameObject.FindGameObjectWithTag("Logic");
+        if (logicObject != null)
+                {
+            logic = logicObject.GetComponent<LogicScript>();
+        }
+            }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer ==3 )
+        if (collision.gameObject.layer == 3 )
         {
             logic.addScore(1);
         }
