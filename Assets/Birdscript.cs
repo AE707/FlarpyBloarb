@@ -24,7 +24,7 @@ public class Birdscript : MonoBehaviour
         
         if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive && GameManager.Instance != null && GameManager.Instance.IsPlaying() && !GameManager.Instance.IsPaused())            myRigidbody.linearVelocity = Vector2.up * flapStrength;
         }       
-    }
+    
 
     void OnCollisionEnter2D(Collision2D collision)
     {
