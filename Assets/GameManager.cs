@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
 
         // UI Reference
     public GameObject pausePanel;
+        public GameObject menuPanel;
 
     // Game state enum
     public enum GameState
@@ -54,10 +55,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        // Initialize game in Playing state
-        StartGame();
-    }
-
+        // Initialize game in Menu state
+        ShowMenu();
         // Update is called once per frame
     private void Update()
     {
@@ -100,6 +99,7 @@ public class GameManager : MonoBehaviour
     // Start the game
     public void StartGame()
     {
+            HideMenu();
         CurrentState = GameState.Playing;
         Time.timeScale = 1f; // Ensure time is running
     }
