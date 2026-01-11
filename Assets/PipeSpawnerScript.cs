@@ -15,7 +15,13 @@ public class PipeSpawnerScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (timer < spawnRate)
+        
+                // Only spawn pipes when game is playing
+        if (GameManager.Instance == null || !GameManager.Instance.IsPlaying())
+        {
+            return;
+        }
+if (timer < spawnRate)
         {
             timer = timer + Time.deltaTime;
         }else
