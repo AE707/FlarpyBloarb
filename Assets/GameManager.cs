@@ -6,6 +6,9 @@ public class GameManager : MonoBehaviour
     // Singleton instance
     public static GameManager Instance { get; private set; }
 
+        // UI Reference
+    public GameObject pausePanel;
+
     // Game state enum
     public enum GameState
     {
@@ -53,6 +56,45 @@ public class GameManager : MonoBehaviour
     {
         // Initialize game in Playing state
         StartGame();
+    }
+
+        // Update is called once per frame
+    private void Update()
+    {
+        // Handle pause/resume with ESC key
+        if (Input.GetKeyDown(KeyCode.Escape) && Instance != null)
+        {
+            if (Instance.IsPlaying())
+            {
+                Instance.PauseGame();
+            }
+            else if (Instance.IsPaused())
+            {
+                Instance.ResumeGame();
+            }
+        }
+    }
+
+    // Pause the game
+    public void PauseGame()
+    {
+        if (CurrentState == GameState.Playing)
+        {
+            CurrentState = GameState.Paused;
+            Time.timeScale = 0f;  // Freeze game time
+            if (pausePanel != null) pausePanel.SetActive(true);
+        }
+    }
+
+    // Resume the game
+    public void ResumeGame()
+    {
+        if (CurrentState == GameState.Paused)
+        {
+            CurrentState = GameState.Playing;
+            Time.timeScale = 1f;  // Resume game time
+            if (pausePanel != null) pausePanel.SetActive(false);
+        }
     }
 
     // Start the game
