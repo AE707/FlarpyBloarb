@@ -21,6 +21,19 @@ public class Birdscript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+                // Handle pause/resume with ESC key
+        if (Input.GetKeyDown(KeyCode.Escape) && GameManager.Instance != null)
+        {
+            if (GameManager.Instance.IsPlaying())
+            {
+                GameManager.Instance.PauseGame();
+            }
+            else if (GameManager.Instance.IsPaused())
+            {
+                GameManager.Instance.ResumeGame();
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive && GameManager.Instance != null && GameManager.Instance.IsPlaying())        {
             myRigidbody.linearVelocity = Vector2.up * flapStrength;
         }       
