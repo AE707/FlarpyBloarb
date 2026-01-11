@@ -25,6 +25,12 @@ public class LogicScript : MonoBehaviour
     public void GameOver()
     {
         GameOverScreen.SetActive(true);
+                
+        // Notify GameManager about game over state
+        if (GameManager.Instance != null)
+        {
+            GameManager.Instance.GameOver();
+        }
     }
 
 }
