@@ -104,26 +104,6 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f; // Ensure time is running
     }
 
-    // Pause the game
-    public void PauseGame()
-    {
-        if (CurrentState == GameState.Playing)
-        {
-            CurrentState = GameState.Paused;
-            Time.timeScale = 0f;
-        }
-    }
-
-    // Resume the game
-    public void ResumeGame()
-    {
-        if (CurrentState == GameState.Paused)
-        {
-            CurrentState = GameState.Playing;
-            Time.timeScale = 1f;
-        }
-    }
-
     // End the game
     public void GameOver()
     {
