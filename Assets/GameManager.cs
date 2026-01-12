@@ -58,7 +58,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Initialize game in Menu state
-        ShowStartScreen();
+        if (!hasGameStarted)
+        {
+            ShowStartScreen();
+                    }
             }
         // Update is called once per frame
     private void Update()
@@ -74,7 +77,20 @@ public class GameManager : MonoBehaviour
             {
                 Instance.ResumeGame();
             }
-        }
+        
+        
+                // Handle settings menu with M key
+        if (Input.GetKeyDown(KeyCode.M) && Instance != null)
+        {
+            if (settingsMenuPanel != null && settingsMenuPanel.activeSelf)
+            {
+                HideSettingsMenu();
+            }
+            else if (Instance.IsPlaying() || Instance.IsPaused())
+            {
+                ShowSettingsMenu();
+            }
+        }}
     }
 
     // Pause the game
@@ -102,6 +118,7 @@ public class GameManager : MonoBehaviour
     // Start the game
     public void StartGame()
     {
+            hasGameStarted = true;
             HideStartScreen();
         CurrentState = GameState.Playing;
         Time.timeScale = 1f; // Ensure time is running
@@ -146,3 +163,27 @@ public class GameManager : MonoBehaviour
         return CurrentState == GameState.Paused;
     }
 }
+
+    // Show settings menu
+    public void ShowSettingsMenu()
+    {
+        if (settingsMenuPanel != null)
+        {
+            settingsMenuPanel.SetActive(true);
+            Time.timeScale = 0f; // Freeze game
+        }
+    }
+
+    // Hide settings menu
+    public void HideSettingsMenu()
+    {
+        if (settingsMenuPanel != null)
+        {
+            settingsMenuPanel.SetActive(false);
+            // Restore time scale based on game state
+            if (CurrentState == GameState.Playing)
+            {
+                Time.timeScale = 1f;
+            }
+        }
+    }
