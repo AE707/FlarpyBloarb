@@ -8,7 +8,9 @@ public class GameManager : MonoBehaviour
 
         // UI Reference
     public GameObject pausePanel;
-        public GameObject menuPanel;
+        public GameObject startScreenPanel;
+            public GameObject settingsMenuPanel;
+    private bool hasGameStarted = false;
 
     // Game state enum
     public enum GameState
@@ -56,7 +58,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         // Initialize game in Menu state
-        ShowMenu();
+        ShowStartScreen();
             }
         // Update is called once per frame
     private void Update()
@@ -100,23 +102,23 @@ public class GameManager : MonoBehaviour
     // Start the game
     public void StartGame()
     {
-            HideMenu();
+            HideStartScreen();
         CurrentState = GameState.Playing;
         Time.timeScale = 1f; // Ensure time is running
     }
 
         // Show the menu
-    public void ShowMenu()
+    public void ShowStartScreen()
     {
         CurrentState = GameState.Menu;
         Time.timeScale = 0f;  // Freeze game time
-        if (menuPanel != null) menuPanel.SetActive(true);
+        if (startScreenPanel != null) startScreenPanel.SetActive(true);
     }
 
     // Hide the menu
-    public void HideMenu()
+    public void HideStartScreen()
     {
-        if (menuPanel != null) menuPanel.SetActive(false);
+        if (startScreenPanel != null) startScreenPanel.SetActive(false);
     }
 
     // End the game
