@@ -52,6 +52,10 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        // Register scene load callback
+        UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
+
     }
 
     // Start is called before the first frame update
@@ -203,4 +207,29 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+
+        // Re-find UI panels after scene reload
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+    {
+        // Re-find UI panels in the new scene by name
+        if (pausePanel == null)
+        {
+            pausePanel = GameObject.Find("PausePanel");
+        }
+        if (startScreenPanel == null)
+        {
+            startScreenPanel = GameObject.Find("StartScreenPanel");
+        }
+        if (settingsMenuPanel == null)
+        {
+            settingsMenuPanel = GameObject.Find("SettingsMenuPanel");
+        }
+        
+        // Reset game started flag if needed
+        if (!hasGameStarted)
+        {
+            ShowStartScreen();
+        }
+    }
+
 }
