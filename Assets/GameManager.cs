@@ -84,11 +84,12 @@ public class GameManager : MonoBehaviour
         {
             if (settingsMenuPanel != null && settingsMenuPanel.activeSelf)
             {
-                HideSettingsMenu();
+                ShowSettingsMenu();
+                
             }
             else if (Instance.IsPlaying() || Instance.IsPaused())
             {
-                ShowSettingsMenu();
+                HideSettingsMenu();
             }
         }}
     }
