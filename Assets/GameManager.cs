@@ -69,6 +69,13 @@ public class GameManager : MonoBehaviour
         // Handle pause/resume with ESC key
         if (Input.GetKeyDown(KeyCode.Escape) && Instance != null)
         {
+            // Don't handle ESC if settings menu is open
+            if (settingsMenuPanel != null && settingsMenuPanel.activeSelf)
+             {
+                 HideSettingsMenu();
+                return;
+            }
+
             if (Instance.IsPlaying())
             {
                 Instance.PauseGame();
@@ -101,6 +108,11 @@ public class GameManager : MonoBehaviour
     {
         if (CurrentState == GameState.Playing)
         {
+                   // Close settings menu if open
+        if (settingsMenuPanel != null && settingsMenuPanel.activeSelf)
+        {
+            settingsMenuPanel.SetActive(false);
+        }
             CurrentState = GameState.Paused;
             Time.timeScale = 0f;  // Freeze game time
             if (pausePanel != null) pausePanel.SetActive(true);
