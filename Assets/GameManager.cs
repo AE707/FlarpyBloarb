@@ -5,12 +5,12 @@ public class GameManager : MonoBehaviour
 {
     // Singleton instance
     public static GameManager Instance { get; private set; }
-
         // UI Reference
     public GameObject pausePanel;
-        public GameObject startScreenPanel;
-            public GameObject settingsMenuPanel;
+    public GameObject startScreenPanel;
+    public GameObject settingsMenuPanel;
     private bool hasGameStarted = false;
+    private GameState stateBeforeSettings;
 
     // Game state enum
     public enum GameState
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
     {
         if (settingsMenuPanel != null)
         {
+            stateBeforeSettings = CurrentState; // Remember current state
             settingsMenuPanel.SetActive(true);
             Time.timeScale = 0f; // Freeze game
         }
@@ -183,8 +184,8 @@ public class GameManager : MonoBehaviour
         if (settingsMenuPanel != null)
         {
             settingsMenuPanel.SetActive(false);
-            // Restore time scale based on game state
-            if (CurrentState == GameState.Playing)
+            // Only restore timeScale if we were actually playing
+            if (stateBeforeSettings == GameState.Playing)
             {
                 Time.timeScale = 1f;
             }
