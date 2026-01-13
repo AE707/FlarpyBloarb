@@ -13,16 +13,17 @@ public class Birdscript : MonoBehaviour
     {
         GameObject logicObject = GameObject.FindGameObjectWithTag("Logic");
                 if (logicObject != null)
-                        {
-                                    logic = logicObject.GetComponent<LogicScript>();
-                                            }
+                    {
+                        logic = logicObject.GetComponent<LogicScript>();
+                    }
     }
 
     // Update is called once per frame
     void Update()
     {
         
-        if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive && GameManager.Instance != null && GameManager.Instance.IsPlaying() && !GameManager.Instance.IsPaused())            myRigidbody.linearVelocity = Vector2.up * flapStrength;
+        if (Input.GetKeyDown(KeyCode.Space) && birdIsAlive && GameManager.Instance != null && GameManager.Instance.IsPlaying() && !GameManager.Instance.IsPaused())          
+          myRigidbody.linearVelocity = Vector2.up * flapStrength;
         }       
     
 
