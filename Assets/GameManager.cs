@@ -212,11 +212,12 @@ public class GameManager : MonoBehaviour
     private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
     {
         // Re-find UI panels in the new scene by name
-        // Always re-find UI panels after scene reload (destroyed objects aren't null)        {
-            pausePanelel = GameObject.Find("PausePanel");
-                    startScreenPanel = GameObject.Find("StartScreenPanel");
-                            settingsMenuPanel = GameObject.Find("SettingsMenuPanel");}
-        
+        // Always re-find UI panels after scene reload (destroyed objects aren't null)     
+           
+            pausePanel = GameObject.Find("PausePanel");
+            startScreenPanel = GameObject.Find("StartScreenPanel");
+            settingsMenuPanel = GameObject.Find("SettingsMenuPanel");
+           
         
         // Reset game started flag if needed
         if (!hasGameStarted)
