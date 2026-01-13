@@ -162,7 +162,7 @@ public class GameManager : MonoBehaviour
     {
         return CurrentState == GameState.Paused;
     }
-}
+
 
     // Show settings menu
     public void ShowSettingsMenu()
@@ -187,3 +187,4 @@ public class GameManager : MonoBehaviour
             }
         }
     }
+}
