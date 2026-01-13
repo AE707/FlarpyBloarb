@@ -77,6 +77,7 @@ public class GameManager : MonoBehaviour
             {
                 Instance.ResumeGame();
             }
+        }
         
         
                 // Handle settings menu with M key
@@ -84,14 +85,15 @@ public class GameManager : MonoBehaviour
         {
             if (settingsMenuPanel != null && settingsMenuPanel.activeSelf)
             {
-                ShowSettingsMenu();
+                HideSettingsMenu();
                 
             }
             else if (Instance.IsPlaying() || Instance.IsPaused())
             {
-                HideSettingsMenu();
+                
+                ShowSettingsMenu();
             }
-        }}
+        }
     }
 
     // Pause the game
