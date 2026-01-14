@@ -208,21 +208,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-        // Re-find UI panels after scene reload
-    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
+{
+    // Find Canvas first
+    Canvas canvas = FindObjectOfType<Canvas>(true); // true = include inactive
+    
+    if (canvas != null)
     {
-        // Re-find UI panels in the new scene by name
-        // Always re-find UI panels after scene reload (destroyed objects aren't null)     
-           
-            pausePanel = GameObject.Find("PausePanel");
-            startScreenPanel = GameObject.Find("StartScreenPanel");
-            settingsMenuPanel = GameObject.Find("SettingsMenuPanel");
-           
+        // Search within Canvas children
+        Transform pauseTransform = canvas.transform.Find("PausePanel");
+        Transform startTransform = canvas.transform.Find("StartScreenPanel");
+        Transform settingsTransform = canvas.transform.Find("SettingsMenuPanel");
         
-        // Reset game started flag if needed
-        if (!hasGameStarted)
-        {
-            ShowStartScreen();
-        }
+        if (pauseTransform != null) pausePanel = pauseTransform.gameObject;
+        if (startTransform != null) startScreenPanel = startTransform.gameObject;
+        if (settingsTransform != null) settingsMenuPanel = settingsTransform.gameObject;
+    }
+    
+    // Reset game started flag if needed
+    if (!hasGameStarted)
+    {
+        ShowStartScreen();
     }
 }
+    
+
+}
+
+
+
