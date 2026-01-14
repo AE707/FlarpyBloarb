@@ -7,6 +7,9 @@ public class PipeSpawnerScript : MonoBehaviour
     private float timer = 0;
     public float heightOffset = 10;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+    public float desiredPipeSpacing = 20f; // Desired distance between pipes
+    private float currentSpawnRate;
+
     void Start()
     {
         spawnPipe();
@@ -16,20 +19,36 @@ public class PipeSpawnerScript : MonoBehaviour
     void Update()
     {
         
-                // Only spawn pipes when game is playing
+        // Only spawn pipes when game is playing
         if (GameManager.Instance == null || !GameManager.Instance.IsPlaying())
         {
             return;
         }
-if (timer < spawnRate)
-        {
-            timer = timer + Time.deltaTime;
-        }else
-        {
-            spawnPipe();
-            timer = 0;
+        
+        // Calculate spawn rate based on current pipe speed
+        PipeMoveScript pipeMover = FindObjectOfType<PipeMoveScript>();
+            if (pipeMover != null)
+                {
+                    float currentSpeed = pipeMover.baseMoveSpeed; // Or get the actual current speed
+                    currentSpawnRate = desiredPipeSpacing / currentSpeed;
+                        // Add minimum spawn rate to prevent too-fast spawning
+    currentSpawnRate = Mathf.Max(currentSpawnRate, 2f); // Never faster than 1.5 seconds
+                }
+            else
+                {
+                    currentSpawnRate = spawnRate;
+                }
 
-        }
+            if (timer < currentSpawnRate)
+                {
+                    timer = timer + Time.deltaTime;
+                }
+            else
+                {
+                    spawnPipe();
+                    timer = 0;
+                }
+
     }
 
     void spawnPipe()
