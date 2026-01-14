@@ -6,7 +6,96 @@ A Flappy Bird-inspired endless runner game built with Unity. Guide your bird thr
 ![C#](https://img.shields.io/badge/C%23-12.0-blue?logo=c-sharp)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+## 🧠 Core Engineering Concepts Demonstrated
+
+- **Singleton Pattern** - GameManager persists across scenes using DontDestroyOnLoad
+- **State Machine** - Clean game state transitions (Menu → Playing → Paused → GameOver)
+- **Event-Driven Architecture** - OnGameStateChanged event system for decoupled UI updates
+- **Data-Driven Design** - Difficulty scaling through configurable parameters
+- **Separation of Concerns** - Game logic, UI management, and input handling in separate scripts
+- **Dynamic Object Management** - Procedural pipe spawning with automatic cleanup
+- **Adaptive Systems** - Spawn rate adjusts dynamically based on pipe movement speed
+
+### Code Example: Game State Machine
+
+```csharp
+public enum GameState { Menu, Playing, Paused, GameOver }
+
+public class GameManager : MonoBehaviour
+{
+    public static GameManager Instance { get; private set; }
+    private GameState currentState;
+    
+    public event Action<GameState, GameState> OnGameStateChanged;
+    
+    public GameState CurrentState
+    {
+        get { return currentState; }
+        private set
+        {
+            if (currentState != value)
+            {
+                GameState previousState = currentState;
+                currentState = value;
+                OnGameStateChanged?.Invoke(previousState, currentState);
+            }
+        }
+    }
+}
+```
+
+### Difficulty Scaling Formula
+
+```csharp
+// Progressive speed increase based on player score
+currentSpeed = baseSpeed + (playerScore * speedIncreasePerPoint);
+currentSpeed = Mathf.Min(currentSpeed, maxSpeed); // Capped at 15 units/s
+
+// Dynamic spawn rate maintains consistent pipe spacing
+spawnRate = desiredPipeSpacing / currentSpeed;
+```
+
+**Technical Details:**
+- Base Speed: 5 units/s
+- Max Speed: 15 units/s  
+- Speed Increase: 0.2 units/s per point
+- At score 10: speed = 7 units/s
+- At score 25: speed = 10 units/s
+- At score 50: speed = 15 units/s (capped)
+
+
+
 ## 🎮 Features
+
+
+## 📋 Project Roadmap
+
+**Completed:**
+- [x] Core gameplay loop with endless spawning
+- [x] Progressive difficulty system
+- [x] Game state management (pause/resume)
+- [x] Collision detection and boundary checks
+- [x] Dynamic spawn rate balancing
+- [x] UI panel system with settings menu
+
+**In Progress / Planned:**
+- [ ] High score system with PlayerPrefs persistence
+- [ ] Sound effects and audio feedback
+- [ ] Bird rotation animation based on velocity
+- [ ] Enhanced death screen with statistics
+- [ ] Achievement system
+- [ ] Visual themes and unlockable skins
+- [ ] Tutorial for first-time players
+- [ ] Power-ups system
+- [ ] Alternative game modes (Time Attack, Survival, Zen)
+- [ ] Online leaderboards integration
+
+
+## 🎬 Gameplay
+
+> **Note:** Screenshots and gameplay GIFs coming soon! Check back for visual demonstrations of the game in action.
+
+
 
 ### Current Features
 - **Endless Gameplay** - Navigate through infinite procedurally-spawned pipes
