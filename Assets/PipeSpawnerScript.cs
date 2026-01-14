@@ -29,10 +29,10 @@ public class PipeSpawnerScript : MonoBehaviour
         PipeMoveScript pipeMover = FindObjectOfType<PipeMoveScript>();
             if (pipeMover != null)
                 {
-                    float currentSpeed = pipeMover.baseMoveSpeed; // Or get the actual current speed
+                    float currentSpeed = pipeMover.currentMoveSpeed; // Use actual speed
                     currentSpawnRate = desiredPipeSpacing / currentSpeed;
-                        // Add minimum spawn rate to prevent too-fast spawning
-    currentSpawnRate = Mathf.Max(currentSpawnRate, 2f); // Never faster than 1.5 seconds
+                    // Add minimum spawn rate to prevent too-fast spawning
+                    currentSpawnRate = Mathf.Max(currentSpawnRate, 2.8f); 
                 }
             else
                 {

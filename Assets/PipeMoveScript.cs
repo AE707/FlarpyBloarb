@@ -7,7 +7,8 @@ public class PipeMoveScript : MonoBehaviour
     public float baseMoveSpeed = 5f; // Starting speed
     public float maxMoveSpeed = 15f; // Maximum speed cap
     public float speedIncreasePerPoint = 0.2f; // Speed increase per score point
-    private float currentMoveSpeed;
+    public float currentMoveSpeed;
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
