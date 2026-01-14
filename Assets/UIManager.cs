@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+
+    
     // Called by Resume button in Pause Panel
     public void OnResumeButtonClick()
     {
@@ -30,6 +32,8 @@ public class UIManager : MonoBehaviour
     {
         if (GameManager.Instance != null)
         {
+            // Hide pause panel first
+            GameManager.Instance.HidePausePanel();
             // Resume time first
             Time.timeScale = 1f;
             // Load main menu scene or show start screen

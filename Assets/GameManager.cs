@@ -209,6 +209,16 @@ public class GameManager : MonoBehaviour
         }
     }
 
+        // Hide pause panel
+    public void HidePausePanel()
+    {
+        if (pausePanel != null)
+        {
+            pausePanel.SetActive(false);
+        }
+    }
+
+
 private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode mode)
 {
     // Find Canvas first
