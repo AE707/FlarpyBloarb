@@ -6,6 +6,13 @@ A Flappy Bird-inspired endless runner game built with Unity. Guide your bird thr
 ![C#](https://img.shields.io/badge/C%23-12.0-blue?logo=c-sharp)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
+## 🎬 Gameplay Preview
+
+![Gameplay Demo](Assets/Screenshots/GamePlay.gif)
+
+> **Note:** To add your gameplay GIF, create a `Screenshots` folder inside `Assets` and place your `GamePlay.gif` file there. GitHub will automatically render it above!
+
+
 ## 🧠 Core Engineering Concepts Demonstrated
 
 - **Singleton Pattern** - GameManager persists across scenes using DontDestroyOnLoad
