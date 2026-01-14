@@ -163,6 +163,7 @@ public class GameManager : MonoBehaviour
         if (CurrentState == GameState.Playing)
         {
             CurrentState = GameState.GameOver;
+                    Time.timeScale = 0f; // Freeze game time
         }
     }
 
